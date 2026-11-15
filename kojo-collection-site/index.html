@@ -89,6 +89,16 @@
   .strip{display:flex;gap:10px;padding:14px 0 40px;overflow-x:auto}
   .strip img{height:76px;cursor:pointer;opacity:.7;border:2px solid transparent}
   .strip img.on,.strip img:hover{opacity:1;border-color:var(--ink)}
+  body.dark{background:#0b0b0b;color:#f2f2f2}
+  body.dark header{background:#0b0b0b;border-color:#222}body.dark .pill{background:#0b0b0b;color:#f2f2f2;border-color:#f2f2f2}
+  body.dark .mark{color:#f2f2f2}body.dark nav a,body.dark .crumb,body.dark #room .lede,body.dark .c .s,body.dark .meta,body.dark dd{color:#9a9a9a}
+  body.dark #room h1{font:700 clamp(54px,9vw,128px)/.9 Inter;letter-spacing:-.045em;text-transform:uppercase}
+  body.dark .walltext{border-color:#f2f2f2;font:italic 400 26px/1.4 'Libre Caslon Display',serif}
+  body.dark .grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}body.dark .grid .c .im{aspect-ratio:3/4}
+  body.dark .c img{filter:grayscale(1) contrast(1.12)}body.dark .c:hover img{filter:none}
+  body.dark .c .t{font:700 15px Inter;letter-spacing:.14em;text-transform:uppercase}
+  body.dark footer{background:#111}body.dark footer b{color:#f2f2f2}
+  body.dark .stage{background:#000}body.dark dl,body.dark .tools{border-color:#222}
   footer{background:var(--soft);margin-top:40px;padding:44px 0 60px;font-size:14px;color:var(--grey)}
   footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
   footer b{color:var(--ink)}
@@ -107,7 +117,7 @@
 <header>
   <div class="wrap bar">
     <a class="mark" href="#top">KOJO<small>TAKES PHOTOS</small></a>
-    <nav><a href="#room-fashion">Fashion</a><a href="#room-city">City</a><a href="#room-waterfront">Waterfront</a><a href="#room-early">Early Work</a></nav>
+    <nav><a href="#room-fashion">Fashion</a><a href="#room-city">City</a><a href="#room-waterfront">Waterfront</a><a href="#room-early">Early Work</a><a href="#room-lens">In Front of the Lens</a><a href="census.html">The Census</a></nav>
     <div class="spacer"></div>
     <a class="pill" href="https://kojotakesphotos.myportfolio.com">Portfolio</a>
     <a class="pill red" href="https://www.instagram.com/kojotakesphotos/">Follow</a>
@@ -159,7 +169,7 @@
   <div class="ob">
     <div>
       <h1 id="oTitle"></h1>
-      <div class="who">Nhyiraba Asumadu Addo</div>
+      <div class="who" id="oWho">Nhyiraba Asumadu Addo</div>
       <div class="meta" id="oMeta"></div>
       <div class="ov"><svg class="ic" style="width:18px;height:18px"><use href="#i-pin"/></svg><span>On view at Kojo Takes Photos in<br><u id="oGallery"></u></span></div>
       <div class="desc" id="oDesc"></div>
@@ -175,7 +185,7 @@
 
 <footer>
   <div class="wrap row">
-    <div><b>Kojo Takes Photos</b><br>All photographs made and shot by Nhyiraba Asumadu Addo.</div>
+    <div><b>Kojo Takes Photos</b><br>All photographs made and shot by Nhyiraba Asumadu Addo, except In Front of the Lens, where friends held the camera.</div>
     <div><a href="https://kojotakesphotos.myportfolio.com">kojotakesphotos.myportfolio.com</a> · <a href="https://www.instagram.com/kojotakesphotos/">@kojotakesphotos</a></div>
   </div>
 </footer>
@@ -183,8 +193,9 @@
 <script>
 const ROOMS = [
   {id:'fashion', name:'Fashion', gallery:'Gallery 101', cover:'fashion_026', dates:'Ongoing', blurb:'Runway and editorial work with the Stevens FAME club, from FW24 “Arctic” to FW26, plus The Gallery Fashion Show.'},
-  {id:'city', name:'City', gallery:'Gallery 204', cover:'city_087', dates:'Ongoing', blurb:'Portraits against the skyline: Little Island at night, a long walk, and one very sunny day.'},
+  {id:'city', name:'City', gallery:'Gallery 204', cover:'city_087', dates:'Ongoing', blurb:'Portraits against the skyline: Little Island at night, a walk along the Hoboken waterfront facing the city, and one very sunny day.'},
   {id:'waterfront', name:'Waterfront', gallery:'Gallery 305', cover:'skate_115', dates:'Ongoing', blurb:'And they skated: friends on the boardwalk, Manhattan across the water.'},
+  {id:'lens', name:'In Front of the Lens', gallery:'Gallery 000', cover:'early_0138', dates:'2022 – now', dark:true, blurb:'The artist as the subject. Every frame here was shot by a friend; the styling, the stance and the vision are his.'},
   {id:'early', name:'Early Work: First Night in the City', gallery:'Gallery 001', cover:'early_0142', dates:'Freshman year', blurb:'The first time the artist went to the city with a group at night.', wall:'“The first time I went to the city with a group at night. Swagless days, but young.”'},
 ];
 const W = [
@@ -198,7 +209,7 @@ const W = [
   {k:'fashion_009', room:'fashion', t:'FAME FW26, Look V', d:'2025–26', cam:''},
   {k:'city_087', room:'city', t:'A Sunny Day I', d:'March 2024', cam:'Nikon D5300'},
   {k:'city_068', room:'city', t:'Little Island, Night', d:'November 2023', cam:'Nikon D5300'},
-  {k:'city_076', room:'city', t:'Walk', d:'November 2023', cam:'Nikon D5300'},
+  {k:'city_walk99', room:'city', t:'Walk', d:'November 2023', cam:'Nikon D5300', note:'Shot in Hoboken, facing the city. A long exposure that lets the figure dissolve while the skyline holds still.'},
   {k:'city_090', room:'city', t:'A Sunny Day II', d:'March 2024', cam:'Nikon D5300'},
   {k:'city_089', room:'city', t:'A Sunny Day III', d:'March 2024', cam:'Nikon D5300'},
   {k:'city_091', room:'city', t:'A Sunny Day IV', d:'March 2024', cam:'Nikon D5300'},
@@ -209,8 +220,11 @@ const W = [
   {k:'early_0142', room:'early', t:'First Night in the City II', d:'Freshman year', cam:'Nikon D5300'},
   {k:'early_0135', room:'early', t:'First Night in the City III', d:'Freshman year', cam:'Nikon D5300'},
   {k:'early_0141', room:'early', t:'First Night in the City IV', d:'Freshman year', cam:'Nikon D5300'},
-  {k:'early_0138', room:'early', t:'First Night in the City V', d:'Freshman year', cam:'Nikon D5300'},
-  {k:'early_0136', room:'early', t:'First Night in the City VI', d:'Freshman year', cam:'Nikon D5300'},
+
+  {k:'early_0136', room:'early', t:'First Night in the City V', d:'Freshman year', cam:'Nikon D5300'},
+  {k:'early_0138', room:'lens', t:'Look 01 — First Night', d:'September 2022', cam:'Nikon D5300', credit:'Photographed by a friend', note:'Brown suede, a city at night, the first trip in with the group.'},
+  {k:'city_076', room:'lens', t:'Look 02 — Waterfront', d:'November 2023', cam:'Nikon D5300', credit:'Photographed by a friend', note:'Red hood, varsity jacket, Hoboken with the city behind him.'},
+  {k:'lens_eboard', room:'lens', t:'Look 03 — The Board', d:'September 2024', cam:'', credit:'Designed by Nhyiraba Asumadu Addo; portrait photographed by a friend', note:'A BSU eboard poster he built in Photoshop in one sitting, with himself as the cover.'},
 ];
 const src = k => 'images/' + k + '.jpg';
 const roomOf = id => ROOMS.find(r => r.id === id);
@@ -219,7 +233,7 @@ $('heroImg').src = src('fashion_011');
 $('count').textContent = W.length;
 
 const workCard = (w, cls) => `<a class="c ${cls}" href="#obj-${W.indexOf(w)}"><div class="im"><img loading="lazy" src="${src(w.k)}" alt="${w.t}"></div>
-  <div class="t">${w.t}</div><div class="s">Nhyiraba Asumadu Addo<br>${w.d}</div></a>`;
+  <div class="t">${w.t}</div><div class="s">${w.credit ? 'Photographed by a friend' : 'Nhyiraba Asumadu Addo'}<br>${w.d}</div></a>`;
 $('exRail').innerHTML = ROOMS.map(r => `<a class="c ex" href="#room-${r.id}"><div class="im"><img loading="lazy" src="${src(r.cover)}" alt="${r.name}"></div>
   <div class="t">${r.name}</div><div class="s">${r.dates}</div></a>`).join('');
 const HL = ['fashion_011','city_087','fashion_045','skate_115','city_068','fashion_008','city_091','fashion_001','skate_119','early_0140'];
@@ -228,7 +242,7 @@ $('hlRail').innerHTML = HL.map(k => workCard(W.find(w => w.k === k), 'hl')).join
 let cur = 0;
 function showRoom(id){
   const r = roomOf(id); if (!r) return;
-  document.body.dataset.v = 'room'; window.scrollTo(0,0);
+  document.body.dataset.v = 'room'; window.scrollTo(0,0); document.body.classList.toggle('dark', !!r.dark);
   $('room').innerHTML = `<div class="crumb"><a href="#top">Kojo Takes Photos</a> / <a href="#top">Now On View</a> / ${r.name}</div>
     <h1>${r.name}</h1><p class="lede">${r.blurb} <br><span style="font-weight:600;color:var(--ink)">${r.gallery}</span></p>
     ${r.wall ? `<p class="walltext">${r.wall}<br><span style="font:600 13px Inter">— the artist</span></p>` : ''}
@@ -238,10 +252,10 @@ function showObj(i){
   cur = (i + W.length) % W.length; const w = W[cur], r = roomOf(w.room);
   document.body.dataset.v = 'obj'; window.scrollTo(0,0);
   $('crumb').innerHTML = `<a href="#top">Kojo Takes Photos</a> / <a href="#room-${r.id}">${r.name}</a> / ${w.t}`;
-  $('oTitle').textContent = w.t; $('oMeta').textContent = w.d; $('oGallery').textContent = r.gallery;
-  $('oDesc').textContent = r.blurb; $('oImg').src = src(w.k);
+  $('oTitle').textContent = w.t; $('oWho').textContent = w.credit ? 'Nhyiraba Asumadu Addo, subject' : 'Nhyiraba Asumadu Addo'; $('oMeta').textContent = w.d; $('oGallery').textContent = r.gallery;
+  $('oDesc').textContent = w.note || r.blurb; document.body.classList.toggle('dark', !!r.dark); $('oImg').src = src(w.k);
   $('oCam').textContent = w.cam ? 'Shot on ' + w.cam : '';
-  $('oDl').innerHTML = `<dt>Title:</dt><dd>${w.t}</dd><dt>Date:</dt><dd>${w.d}</dd>${w.cam ? `<dt>Camera:</dt><dd>${w.cam}</dd>` : ''}<dt>Credit Line:</dt><dd>Made and shot by Nhyiraba Asumadu Addo</dd><dt>Object Number:</dt><dd>KTP.${String(cur + 1).padStart(3, '0')}</dd>`;
+  $('oDl').innerHTML = `<dt>Title:</dt><dd>${w.t}</dd><dt>Date:</dt><dd>${w.d}</dd>${w.cam ? `<dt>Camera:</dt><dd>${w.cam}</dd>` : ''}<dt>Credit Line:</dt><dd>${w.credit || 'Made and shot by Nhyiraba Asumadu Addo'}</dd><dt>Object Number:</dt><dd>KTP.${String(cur + 1).padStart(3, '0')}</dd>`;
   $('strip').innerHTML = W.map((x, j) => ({x, j})).filter(o => o.x.room === w.room)
     .map(o => `<img src="${src(o.x.k)}" class="${o.j === cur ? 'on' : ''}" onclick="location.hash='obj-${o.j}'" alt="">`).join('');
 }
@@ -250,7 +264,7 @@ function route(){
   let m;
   if ((m = h.match(/^obj-(\d+)$/))) return showObj(+m[1]);
   if ((m = h.match(/^room-([a-z]+)$/))) return showRoom(m[1]);
-  document.body.dataset.v = 'home';
+  document.body.dataset.v = 'home'; document.body.classList.remove('dark');
 }
 $('prev').onclick = () => location.hash = 'obj-' + ((cur - 1 + W.length) % W.length);
 $('next').onclick = () => location.hash = 'obj-' + ((cur + 1) % W.length);
