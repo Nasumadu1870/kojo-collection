@@ -53,6 +53,11 @@
   .c .s{color:var(--grey);font-size:14px;line-height:1.55}
   .ex{width:min(560px,82vw)}.ex .im{aspect-ratio:16/10}
   .hl{width:min(300px,62vw)}.hl .im{aspect-ratio:4/5}
+  .origin{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:34px 0;margin:10px 0 0;display:grid;grid-template-columns:260px 1fr;gap:12px 40px}
+  .origin-k{font:700 12px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--red);padding-top:8px}
+  .origin p{font:400 clamp(21px,2.1vw,27px)/1.45 'Libre Caslon Display',serif;margin:0}
+  .origin a{grid-column:2;font:600 15px Inter;text-decoration:none}.origin a:hover{text-decoration:underline}
+  @media(max-width:900px){.origin{grid-template-columns:1fr}.origin a{grid-column:1}}
   /* member card */
   .member{border:1px solid var(--rule);border-radius:8px;padding:34px;margin:56px 0;display:grid;grid-template-columns:1fr 1fr;gap:40px}
   .member h3{font:700 28px Inter;margin:0 0 12px}
@@ -141,6 +146,7 @@
       <div class="info"><svg class="ic"><use href="#i-clock"/></svg><div><b><span id="count" style="color:inherit;font-size:inherit"></span> works on view</b><span>Four galleries, 2022 to now.</span></div></div>
     </div>
 
+    <div class="origin"><div class="origin-k">How this museum started</div><p>In July 2023, Kojo opened a Photoshop file and named it “like my own art gallery, failed.” He was arranging photos of himself and his friends at the Metropolitan Museum of Art as if they already hung on its walls. The idea came from Virgil Abloh: once something is in a museum, the art world treats it as art. This site is that file, finished.</p><a href="design.html#d212.jpg">See the original file →</a></div>
     <div class="rail-h"><h2>Now On View</h2><a href="#room-fashion">View all ›</a></div>
     <div class="rail" id="exRail"></div>
 

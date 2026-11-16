@@ -17,6 +17,7 @@ h1{font:400 clamp(44px,6vw,76px)/1 'Libre Caslon Display',serif;margin:56px 0 12
 figure{break-inside:avoid;margin:0 0 22px;cursor:zoom-in}figure img{width:100%;display:block;box-shadow:0 8px 24px -14px #0008;background:#f3f3f3}
 figcaption{font-size:12.5px;color:#666;padding:8px 2px 0;line-height:1.45}figcaption b{color:#1d1d1d;font-weight:600;display:block;font-size:13.5px}
 .brk{display:inline-block;font:700 10.5px Inter;letter-spacing:.1em;text-transform:uppercase;color:#e4002b;margin-left:6px}
+.pin{column-span:all;max-width:760px;margin:0 0 34px}.pinlab{font:700 12px Inter;letter-spacing:.16em;text-transform:uppercase;color:#e4002b;margin-bottom:10px}.pinnote{display:block;margin-top:10px;font:400 18px/1.5 'Libre Caslon Display',serif;color:#1d1d1d}
 #lb{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}#lb img{max-width:94vw;max-height:92vh}#lb.on{display:flex}
 @media(max-width:860px){header{padding:0 18px;gap:14px}nav{overflow-x:auto;white-space:nowrap;gap:14px;font-size:13.5px;scrollbar-width:none}main{padding:0 18px 60px}.wall{columns:2 150px;column-gap:10px}figure{margin-bottom:14px}}
 </style></head>
@@ -36,10 +37,10 @@ const brk=x=>{const m=+(x.modified||'').slice(5,7);return [6,7,8,12,1].includes(
 const nice=s=>s.replace(/[-_]+/g,' ').replace(/\b(copy|recovered|final|v\d+(\.\d+)?|mark \d+)\b/gi,'').replace(/\s+/g,' ').trim()||'Untitled';
 function draw(){
   $('#tabs').innerHTML=[['all','All'],['break','Break work'],['bsu','BSU'],['rha','RHA'],['experiments','Experiments'],['senior','Senior year']].map(([k,l])=>`<button class="${F===k?'on':''}" onclick="F='${k}';draw()">${l}</button>`).join('');
-  const L=D.filter(x=>F==='all'||(F==='break'?brk(x):cat(x)===F)).sort((a,b)=>(b.modified||'').localeCompare(a.modified||''));
-  $('#wall').innerHTML=L.map(x=>`<figure data-src="images/design/${x.file}"><img loading="lazy" src="images/design/${x.file}" alt="${nice(x.name)}"><figcaption><b>${nice(x.name)}${brk(x)?'<span class="brk">Break</span>':''}</b>${x.modified}${x.saves?` · saved ${x.saves}×`:''}<br>${x.folder.split('/').slice(0,3).join(' / ')}</figcaption></figure>`).join('');
+  const L0=D.filter(x=>F==='all'||(F==='break'?brk(x):cat(x)===F)).sort((a,b)=>(b.modified||'').localeCompare(a.modified||'')); const L=[...L0.filter(x=>x.note),...L0.filter(x=>!x.note)];
+  $('#wall').innerHTML=L.map(x=>`<figure id="${x.file}" class="${x.note?'pin':''}" data-src="images/design/${x.file}">${x.note?`<div class="pinlab">Where this museum started</div>`:''}<img loading="lazy" src="images/design/${x.file}" alt="${nice(x.name)}"><figcaption><b>${nice(x.name)}${brk(x)?'<span class="brk">Break</span>':''}</b>${x.modified}${x.saves?` · saved ${x.saves}×`:''}<br>${x.folder.split('/').slice(0,3).join(' / ')}${x.note?`<span class="pinnote">${x.note}</span>`:''}</figcaption></figure>`).join('');
 }
 document.addEventListener('click',e=>{const f=e.target.closest('figure');if(f){$('#lb img').src=f.dataset.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
-fetch('images/design/design_sel.json').then(r=>r.json()).then(j=>{D=j;draw()});
+fetch('images/design/design_sel.json').then(r=>r.json()).then(j=>{D=j;draw();if(location.hash){const el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)el.scrollIntoView()}});
 </script>
 </body></html>
