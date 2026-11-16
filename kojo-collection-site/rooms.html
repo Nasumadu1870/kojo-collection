@@ -53,7 +53,7 @@ body.inroom #hall{display:none}body.inroom #room{display:block}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}#lb img{max-width:94vw;max-height:92vh}
 #lb.on{display:flex}
 @media(max-width:860px){.rhead{grid-template-columns:1fr;gap:20px}header{padding:0 18px;gap:14px}header nav{overflow-x:auto;white-space:nowrap;gap:14px;font-size:13.5px;scrollbar-width:none}main{padding:0 18px 60px}.wall{columns:2 150px;column-gap:10px}.wall figure{margin-bottom:10px}.shoots{grid-template-columns:1fr 1fr;gap:24px 12px}.shoot .t{font-size:19px}.facts{font-size:13px}.next{flex-wrap:wrap;font-size:14px}.hero img{max-height:70vh}}
-</style>
+.tag{position:absolute;top:8px;left:8px;z-index:2;font:700 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;background:#fff;color:#111;padding:5px 7px;border-radius:3px;box-shadow:0 1px 4px #0005;cursor:copy;user-select:all}.tag.ok{background:#111;color:#fff}.tagwrap{position:relative}.wall figure{position:relative}.hero{position:relative}</style>
 </head>
 <body>
 <header><a class="mark" href="index.html">KOJO<small>TAKES PHOTOS</small></a>
@@ -123,7 +123,7 @@ function room(id){
   $('#room').innerHTML=`<div class="crumb"><a href="index.html">Kojo Takes Photos</a> / <a href="#hall">Shoots</a> / ${r.title}</div>
    <div class="rhead"><div><div class="kicker">${r.kicker} · ${r.date}</div><h1>${r.title}</h1><p>${r.blurb}</p>${r.census?`<p class="note"><a href="census.html">See it in the Census ↗</a></p>`:''}${r.artist?`<div class="artist"><div class="ah">Notes from the artist</div>${r.artist.map(a=>`<p>${a}</p>`).join('')}</div>`:''}</div>
    <dl class="facts">${facts.map(f=>`<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('')}</dl></div>
-   ${ph[0]?`<div class="hero"><img src="images/rooms/${D}/${ph[0].file}" data-big="1" alt="${r.title}"></div>`:""}<div class="wall">${ph.length>1?ph.slice(1).map(p=>`<figure data-src="images/rooms/${D}/${p.file}"><img loading="lazy" src="images/rooms/${D}/${p.file}" alt="${r.title}"><figcaption>${r.pnote&&r.pnote[p.file]?`<b style="color:var(--ink)">${r.pnote[p.file]}</b><br>`:''}${pdate(p)}${p.model?' · '+p.model:''}</figcaption></figure>`).join(''):'<p class="note">Photos are on their way.</p>'}</div>
+   ${ph[0]?`<div class="hero"><span class="tag">${id}-${ph[0].file.slice(0,2)}</span><img src="images/rooms/${D}/${ph[0].file}" data-big="1" alt="${r.title}"></div>`:""}<div class="wall">${ph.length>1?ph.slice(1).map(p=>`<figure data-src="images/rooms/${D}/${p.file}"><span class="tag">${id}-${p.file.slice(0,2)}</span><img loading="lazy" src="images/rooms/${D}/${p.file}" alt="${r.title}"><figcaption>${r.pnote&&r.pnote[p.file]?`<b style="color:var(--ink)">${r.pnote[p.file]}</b><br>`:''}${pdate(p)}${p.model?' · '+p.model:''}</figcaption></figure>`).join(''):'<p class="note">Photos are on their way.</p>'}</div>
    ${(r.flyer||r.posts)?`<div class="sideby">${r.flyer?`<div class="flyer"><h3>The flyer</h3><img src="${r.flyer[0]}" alt="flyer"><p>${r.flyer[1]}</p></div>`:''}${r.posts?`<div class="posts"><h3>As published</h3>${r.posts.map(p=>`<blockquote class="instagram-media" data-instgrm-permalink="${IG}${p[0]}/" data-instgrm-version="14" style="margin:0 0 6px;max-width:440px;width:100%;min-width:0"><a href="${IG}${p[0]}/">View on Instagram</a></blockquote><p>${p[1]}</p>`).join('')}</div>`:''}</div>`:''}
    <div class="next"><a href="#r-${prev.id}">← ${prev.title}</a><a href="#hall">All shoots</a><a href="#r-${next.id}">${next.title} →</a></div>`;
   if(window.instgrm) instgrm.Embeds.process();
@@ -133,6 +133,7 @@ function route(){const m=location.hash.match(/^#r-([a-z0-9_]+)$/); m?room(m[1]):
 document.addEventListener('click',e=>{const f=e.target.closest('figure[data-src],img[data-big]');if(f){$('#lb img').src=f.dataset.src||f.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
 Promise.all(['images/rooms/rooms.json','images/rooms/rooms_events.json'].map(u=>fetch(u).then(r=>r.ok?r.json():{}).catch(()=>({})))).then(([a,b])=>{DATA=Object.assign({},b,a);route()});
+document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t)return;e.preventDefault();e.stopPropagation();try{navigator.clipboard.writeText(t.textContent)}catch(_){};t.classList.add('ok');const o=t.textContent;t.textContent='copied';setTimeout(()=>{t.textContent=o;t.classList.remove('ok')},900)},true);
 addEventListener('hashchange',route);
 </script>
 <script async src="https://www.instagram.com/embed.js"></script>
