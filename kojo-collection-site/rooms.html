@@ -18,6 +18,7 @@ main{max-width:1240px;margin:0 auto;padding:0 32px 80px}
 /* index */
 #hall h1{font:400 clamp(44px,6vw,76px)/1 'Libre Caslon Display',serif;margin:56px 0 12px}
 #hall .lede{max-width:700px;color:var(--sub);font-size:17px;line-height:1.6;margin:0 0 34px}
+.tabs{display:flex;gap:8px;margin:0 0 26px}.tabs button{font:600 14px Inter;padding:8px 16px;border-radius:999px;border:1px solid #1d1d1d;background:#fff;cursor:pointer}.tabs button.on{background:#1d1d1d;color:#fff}
 .shoots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:36px 24px;padding-bottom:20px}
 .shoot{text-decoration:none;display:block}
 .shoot .im{aspect-ratio:4/5;background:#eee;overflow:hidden}.shoot .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
@@ -59,9 +60,9 @@ body.inroom #hall{display:none}body.inroom #room{display:block}
 <nav><a href="index.html">The Collection</a><a href="rooms.html">Shoots</a><a href="census.html">The Census</a></nav><div class="sp"></div></header>
 <main>
 <section id="hall">
-  <h1>Shoots</h1>
-  <p class="lede">Each shoot has its own page, with the photos he took and edited, the post where the work was published, the flyer if he designed one, and the dates and facts from the Census.</p>
-  <div class="shoots" id="doors"></div>
+  <h1>Shoots &amp; Events</h1>
+  <p class="lede">Every shoot and event has its own page, with the photos he took and edited, the post where the work was published, the flyer if he designed one, and the dates and facts from the Census.</p>
+  <div class="tabs" id="tabs"></div><div class="shoots" id="doors"></div>
   <p class="legend">Photos were picked by a script from Kojo’s own edited exports and his cameras only, then reviewed by him.</p>
 </section>
 <section id="room"></section>
@@ -70,35 +71,52 @@ body.inroom #hall{display:none}body.inroom #room{display:block}
 <script>
 const IG='https://www.instagram.com/p/';
 const ROOMS=[
- {id:'fashion23',title:'Runway, Fall ’23',kicker:'FAME fall fashion show',date:'December 2023',d1:'#1a1a1a',d2:'#ff2d55',blurb:'His first FAME runway. Shot on the Nikon D5300 from the edge of the catwalk.',artist:['The finished edits from this show live in a folder he named “for Z”. The original folder holds only the straight-from-camera files.'],facts:[['Club','Stevens FAME'],['Camera','Nikon D5300']],posts:[['C1OFTBds6OT','Posted by @jessica__aurora, Dec 24, 2023'],['C1fxCeXr0Rn','Posted by @bupb3bao, shot with @_rafael_lee and @awa_jpg']]},
- {id:'kwanzaa23',title:'Kwanzaa',kicker:'BSU · historian',date:'Winter 2023–24',d1:'#b51f1f',d2:'#1e7b34',blurb:'The BSU’s Kwanzaa celebration, photographed in his year as historian.',facts:[['Role','BSU historian'],['Camera','Nikon D5300']]},
- {id:'ebony24',title:'Ebony Night ’24',kicker:'BSU · historian',date:'Early May 2024',d1:'#0d0b07',d2:'#d9ae4f',blurb:'The gala of the year, on Apr 27, 2024. It was shot on a Fujifilm X100F lent by the Stevens RGB Photography club and edited in Lightroom on his iPhone, May 1–7.',artist:['The Fuji was on loan from the RGB club.','Some frames in the final cut were likely shot by Chelsea on her Nikon D3200. Kojo did the editing.'],facts:[['Camera','Fujifilm X100F (RGB club loan)'],['Edited','Lightroom on iPhone']],census:'BSU Ebony Night'},
- {id:'trapnpaint24',title:'Trap n Paint',kicker:'BSU · social media director',date:'Sep 24, 2024 · Babbio 321 · 9:15 PM',d1:'#fbf8f2',d2:'#2f7bff',blurb:'He designed the flyer five days out, shot the night, and posted the recap two days later.',facts:[['Flyer finished','Sep 19, 2024'],['Recap posted','Sep 26, 2024']],flyer:['images/bsu/b041.jpg','The flyer, finished Sep 19, 2024.']},
- {id:'dumbo24',title:'DUMBO',kicker:'Stevens RGB Photography · photowalk',date:'Sep 29, 2024',d1:'#5c5c5c',d2:'#cfcfcc',blurb:'A photowalk with the RGB club under the bridges in DUMBO.',skip:['01.jpg','02.jpg','03.jpg','04.jpg'],facts:[['Club','Stevens RGB Photography']],posts:[['DAuHuhsR4XR','Posted by @stevens_rgb_photography, Oct 4, 2024']]},
- {id:'dti24',from:'dumbo24',only:['01.jpg','02.jpg','03.jpg','04.jpg'],title:'Dress to Impress',kicker:'FAME · GBM 1',date:'Around Sep 12, 2024',d1:'#2b1a4a',d2:'#ff7ab8',blurb:'Four frames that were still on the Fuji when he went to DUMBO. They come from an earlier FAME event, most likely GBM 1, “Dress to Impress”.',facts:[['Camera','Fujifilm X100F (RGB club loan)']],artist:['These were filed with the DUMBO photowalk by mistake. They’re from FAME, not the walk.','Their timestamps fall about 16 days before the walk, which points to GBM 1 rather than Arctic.']},
- {id:'fall24',title:'Fall Photoshoot ’24',kicker:'FAME',date:'October 2024',d1:'#7a3413',d2:'#e0a15a',blurb:'Shot Oct 5 and edited in Lightroom on Oct 14, 2024.',facts:[['Camera','Nikon D5300 · 18–55mm'],['Edited','Lightroom 8.0, Oct 14, 2024']],posts:[['DBz49ZAJK1p','Posted by @jessica__aurora, Nov 1, 2024 · credits @kojotakesphotos']],census:'FAME Fall Photoshoot 24'},
- {id:'arctic',title:'Arctic',kicker:'FAME FW24',date:'December 2024',d1:'#9fc9e8',d2:'#eaf4fb',blurb:'FAME’s FW24 show. He shot it on Dec 7 and, 41 days later, exported it on Jan 17, 2025.',facts:[['Camera','Nikon D5300 · 18–55mm'],['Edited','Lightroom 8.1, Jan 17, 2025'],['The edit','Contrast +4, Vibrance +17, 4800 K']],posts:[['DFJjmyVJ6i8','Posted by @jessica__aurora, Jan 23, 2025']],census:'FAME FW24 Arctic'},
- {id:'gallery25',title:'The Gallery',kicker:'FAME fashion show 2025',date:'May 1, 2025',d1:'#ffffff',d2:'#151515',blurb:'Shot on a Canon Rebel T5i that Dan lent him, and edited in Lightroom nine days later.',artist:['The Canon was on loan from Dan, a friend and fellow Stevens photographer.'],facts:[['Camera','Canon Rebel T5i · 18–135mm (lent by Dan)'],['Edited','Lightroom 8.2, May 10, 2025']],census:'The Gallery Fashion Show 2025'},
- {id:'ebony25',title:'Ebony Night ’25',kicker:'BSU',date:'May 2025',d1:'#06140f',d2:'#d9ae4f',blurb:'Ebony Night, one year on.',facts:[['Club','Black Student Union']],posts:[['DJiKHLvvi4w','Posted May 12, 2025: “picture by kojo!”']]},
- {id:'rabbit',title:'Down the Rabbit Hole',kicker:'FAME',date:'Dec 11, 2025',d1:'#3a1d6e',d2:'#ff5fa2',blurb:'FAME’s Down the Rabbit Hole show. The camera data was stripped when he exported it at 4 AM on Jan 23, 2026, and the models’ posts carry the date.',facts:[['Show','Dec 11, 2025'],['Exported','Jan 23, 2026']],posts:[['DT6_xo2jFY5','Posted by @_marimarmar_ · credits @kojotakesphotos'],['DT6Sclbj5sR','Posted by @jessica__aurora · shot by Kojo, @fionnafleurs and @joesimon.photography']],census:'FAME “Down the Rabbit Hole”'},
+ {id:'fast_alumni23',kind:'event',s:'2023-02-26',title:'Alumni Ball',kicker:'FAST',date:'Feb 26, 2023',d1:'#1a1a3a',d2:'#7b6cff',blurb:'The Filipino American Student Taskforce’s alumni ball: formalwear, the old heads back on campus, and a dance floor.',facts:[['Club','FAST'],['Camera','Nikon D5300']]},
+ {id:'fast_linegames23',kind:'event',s:'2023-03-25',title:'Line Games',kicker:'FAST',date:'Mar 25, 2023',d1:'#3a2a12',d2:'#ffb020',blurb:'Teams, chaos and a lot of running across the room.',facts:[['Club','FAST'],['Camera','Nikon D5300']]},
+ {id:'esc_afterhours23',kind:'event',s:'2023-04-19',title:'After Hours',kicker:'Ethnic Student Council',date:'Apr 19, 2023',d1:'#1b2233',d2:'#00b3ff',blurb:'ESC after dark: dance sets and performances.',facts:[['Council','Stevens Ethnic Student Council'],['Camera','Nikon D5300']]},
+ {id:'fast_barrios',kind:'event',s:'2023-04-28',title:'Barrios',kicker:'FAST',date:'Apr 28, 2023',d1:'#3a0f12',d2:'#ff3b3b',blurb:'Barrios with FAST: games, food, dance-offs and a 2023 photo wall.',facts:[['Club','FAST'],['Camera','Nikon D5300']]},
+ {id:'bsu_trap23',kind:'event',s:'2023-09-14',title:'Trap and Paint ’23',kicker:'BSU · historian',date:'Sep 14, 2023',d1:'#111',d2:'#24c06a',blurb:'The first Trap and Paint, a year before the one he designed the flyer for.',facts:[['Role','BSU historian'],['Camera','Nikon D5300']]},
+ {id:'bsu_nigeria23',kind:'event',s:'2023-10-03',title:'Nigerian Independence Day ’23',kicker:'BSU · historian',date:'Oct 3, 2023',d1:'#0b3d1e',d2:'#2fbf5a',blurb:'Music, food and the green-and-white crowd.',facts:[['Role','BSU historian'],['Camera','Nikon D5300']]},
+ {id:'esc_gala23',kind:'event',s:'2023-10-31',title:'Global Gala',kicker:'Ethnic Student Council',date:'Oct 31, 2023',d1:'#140b2a',d2:'#c56bff',blurb:'Culture on stage: traditional dress, dance teams and performances from across the council.',facts:[['Council','Stevens Ethnic Student Council'],['Camera','Nikon D5300']]},
+ {id:'esc_openmic24',kind:'event',s:'2023-11-14',title:'Open Mic',kicker:'Ethnic Student Council',date:'Nov 14, 2023',d1:'#2a1a0a',d2:'#ff8a3d',blurb:'Poets, singers and a guitar or two.',facts:[['Council','Stevens Ethnic Student Council'],['Camera','Nikon D5300']]},
+ {id:'bsu_love24',kind:'event',s:'2024-02-20',title:'Love n BSU ’24',kicker:'BSU · historian',date:'Feb 20, 2024',d1:'#3a0f1f',d2:'#ff5f8f',blurb:'A valentine’s game show with a packed room.',facts:[['Role','BSU historian'],['Camera','Nikon D5300']]},
+ {id:'bsu_kickoff24',kind:'event',s:'2024-02-01',title:'Kickoff',kicker:'BSU · historian',date:'February 2024',d1:'#2a1405',d2:'#ffb23f',blurb:'Drums, dancers and the whole room on its feet.',facts:[['Role','BSU historian']]},
+ {id:'bsu_ww24',kind:'event',s:'2024-02-27',title:'Wonder Woman',kicker:'BSU · historian',date:'Feb 27, 2024',d1:'#2a0b0b',d2:'#e83a3a',blurb:'Black women on campus, celebrated: talks, performances and a lot of laughing.',facts:[['Role','BSU historian'],['Camera','Nikon D5300']]},
+ {id:'pride24',kind:'event',s:'2024-04-11',title:'Pride After Dark',kicker:'Stevens',date:'Apr 11, 2024',d1:'#1b0a3a',d2:'#ff4fd8',blurb:'Drag, lights and a crowd that showed up.',facts:[['Camera','Nikon D5300 and Fujifilm X100F']]},
+ {id:'esc_unity24',kind:'event',s:'2024-04-05',title:'UNITY',kicker:'Ethnic Student Council · behind the scenes',date:'Apr 5, 2024',d1:'#2a2205',d2:'#ffd23f',blurb:'Backstage and onstage at UNITY: costumes, rehearsals and the show.',facts:[['Council','Stevens Ethnic Student Council'],['Camera','Nikon D5300 and Fujifilm X100F']]},
+ {id:'bsu_karaoke24',kind:'event',s:'2024-04-10',title:'Karaoke Night',kicker:'BSU × FAST × LAA',date:'Apr 10, 2024 · TechFlex · 9:15 PM',d1:'#0a1440',d2:'#3d8bff',blurb:'Three clubs, one mic. He made the flyer and photographed the night.',facts:[['Camera','Fujifilm X100F (RGB club loan)']],flyer:['images/bsu/b146.jpg','The flyer, finished Mar 26, 2024.']},
+ {id:'bsu_shelter25',kind:'event',s:'2025-01-29',title:'Volunteering at the Shelter',kicker:'BSU',date:'Jan 29, 2025',d1:'#2a2015',d2:'#c98a3a',blurb:'The BSU cooking and serving at the Hoboken homeless shelter.',facts:[['Camera','Canon Rebel T5i (lent by Dan)']]},
+
+ {id:'fashion23',s:'2023-12-02',title:'Runway, Fall ’23',kicker:'FAME fall fashion show',date:'December 2023',d1:'#1a1a1a',d2:'#ff2d55',blurb:'His first FAME runway. Shot on the Nikon D5300 from the edge of the catwalk.',artist:['The finished edits from this show live in a folder he named “for Z”. The original folder holds only the straight-from-camera files.'],facts:[['Club','Stevens FAME'],['Camera','Nikon D5300']],posts:[['C1OFTBds6OT','Posted by @jessica__aurora, Dec 24, 2023'],['C1fxCeXr0Rn','Posted by @bupb3bao, shot with @_rafael_lee and @awa_jpg']]},
+ {id:'kwanzaa23',s:'2024-01-15',title:'Kwanzaa',kicker:'BSU · historian',date:'Winter 2023–24',d1:'#b51f1f',d2:'#1e7b34',blurb:'The BSU’s Kwanzaa celebration, photographed in his year as historian.',facts:[['Role','BSU historian'],['Camera','Nikon D5300']]},
+ {id:'ebony24',s:'2024-04-20',title:'Ebony Night ’24',kicker:'BSU · historian',date:'Early May 2024',d1:'#0d0b07',d2:'#d9ae4f',blurb:'The gala of the year, in spring 2024. It was shot on a Fujifilm X100F lent by the Stevens RGB Photography club and edited in Lightroom on his iPhone, May 1–7.',artist:['The Fuji was on loan from the RGB club.','Some frames in the final cut were likely shot by Chelsea on her Nikon D3200. Kojo did the editing.'],facts:[['Camera','Fujifilm X100F (RGB club loan)'],['Edited','Lightroom on iPhone']],census:'BSU Ebony Night'},
+ {id:'trapnpaint24',s:'2024-09-24',title:'Trap n Paint',kicker:'BSU · social media director',date:'Sep 24, 2024 · Babbio 321 · 9:15 PM',d1:'#fbf8f2',d2:'#2f7bff',blurb:'He designed the flyer five days out, shot the night, and posted the recap two days later.',facts:[['Flyer finished','Sep 19, 2024'],['Recap posted','Sep 26, 2024']],flyer:['images/bsu/b041.jpg','The flyer, finished Sep 19, 2024.']},
+ {id:'dumbo24',s:'2024-09-29',title:'DUMBO',kicker:'Stevens RGB Photography · photowalk',date:'Sep 29, 2024',d1:'#5c5c5c',d2:'#cfcfcc',blurb:'A photowalk with the RGB club under the bridges in DUMBO.',skip:['01.jpg','02.jpg','03.jpg','04.jpg'],facts:[['Club','Stevens RGB Photography']],posts:[['DAuHuhsR4XR','Posted by @stevens_rgb_photography, Oct 4, 2024']]},
+ {id:'dti24',s:'2024-09-12',from:'dumbo24',only:['01.jpg','02.jpg','03.jpg','04.jpg'],title:'Dress to Impress',kicker:'FAME · GBM 1',date:'Around Sep 12, 2024',d1:'#2b1a4a',d2:'#ff7ab8',blurb:'Four frames that were still on the Fuji when he went to DUMBO. They come from an earlier FAME event, most likely GBM 1, “Dress to Impress”.',facts:[['Camera','Fujifilm X100F (RGB club loan)']],artist:['These were filed with the DUMBO photowalk by mistake. They’re from FAME, not the walk.','Their timestamps fall about 16 days before the walk, which points to GBM 1 rather than Arctic.']},
+ {id:'fall24',s:'2024-10-05',title:'Fall Photoshoot ’24',kicker:'FAME',date:'October 2024',d1:'#7a3413',d2:'#e0a15a',blurb:'Shot Oct 5 and edited in Lightroom on Oct 14, 2024.',facts:[['Camera','Nikon D5300 · 18–55mm'],['Edited','Lightroom 8.0, Oct 14, 2024']],posts:[['DBz49ZAJK1p','Posted by @jessica__aurora, Nov 1, 2024 · credits @kojotakesphotos']],census:'FAME Fall Photoshoot 24'},
+ {id:'arctic',s:'2024-12-07',title:'Arctic',kicker:'FAME FW24',date:'December 2024',d1:'#9fc9e8',d2:'#eaf4fb',blurb:'FAME’s FW24 show. He shot it on Dec 7 and, 41 days later, exported it on Jan 17, 2025.',facts:[['Camera','Nikon D5300 · 18–55mm'],['Edited','Lightroom 8.1, Jan 17, 2025'],['The edit','Contrast +4, Vibrance +17, 4800 K']],posts:[['DFJjmyVJ6i8','Posted by @jessica__aurora, Jan 23, 2025']],census:'FAME FW24 Arctic'},
+ {id:'gallery25',s:'2025-05-01',title:'The Gallery',kicker:'FAME fashion show 2025',date:'May 1, 2025',d1:'#ffffff',d2:'#151515',blurb:'Shot on a Canon Rebel T5i that Dan lent him, and edited in Lightroom nine days later.',artist:['The Canon was on loan from Dan, a friend and fellow Stevens photographer.'],facts:[['Camera','Canon Rebel T5i · 18–135mm (lent by Dan)'],['Edited','Lightroom 8.2, May 10, 2025']],census:'The Gallery Fashion Show 2025'},
+ {id:'ebony25',s:'2025-05-03',title:'Ebony Night ’25',kicker:'BSU',date:'May 2025',d1:'#06140f',d2:'#d9ae4f',blurb:'Ebony Night, one year on.',facts:[['Club','Black Student Union']],posts:[['DJiKHLvvi4w','Posted May 12, 2025: “picture by kojo!”']]},
+ {id:'rabbit',s:'2025-12-11',title:'Down the Rabbit Hole',kicker:'FAME',date:'Dec 11, 2025',d1:'#3a1d6e',d2:'#ff5fa2',blurb:'FAME’s Down the Rabbit Hole show. The camera data was stripped when he exported it at 4 AM on Jan 23, 2026, and the models’ posts carry the date.',facts:[['Show','Dec 11, 2025'],['Exported','Jan 23, 2026']],posts:[['DT6_xo2jFY5','Posted by @_marimarmar_ · credits @kojotakesphotos'],['DT6Sclbj5sR','Posted by @jessica__aurora · shot by Kojo, @fionnafleurs and @joesimon.photography']],census:'FAME “Down the Rabbit Hole”'},
 ];
 const FUJI_OFF=(2670*24+15)*3600e3+50*60e3;
-function pdate(p){let d=(p.date||'').slice(0,19).replace(/^(\d{4}):(\d\d):(\d\d)/,'$1-$2-$3');if(!d)return '';if(p.model==='X100F'&&d.startsWith('2017')){const t=new Date(d.replace(' ','T')+'Z').getTime()+FUJI_OFF;return new Date(t).toISOString().slice(0,10)+' (Fuji clock corrected)'}return d.slice(0,10)}
+function pdate(p){let d=(p.date||'').slice(0,19).replace(/^(\d{4}):(\d\d):(\d\d)/,'$1-$2-$3');if(!d)return '';if(p.model==='X100F'&&d.startsWith('2017')){if(!['dumbo24'].includes(CUR))return 'Date unknown (Fuji clock not set)';const t=new Date(d.replace(' ','T')+'Z').getTime()+FUJI_OFF;return new Date(t).toISOString().slice(0,10)+' (Fuji clock corrected)'}return d.slice(0,10)}
 const PLAIN={title:'First Night in the City',sub:'Freshman year',href:'index.html#room-early'};
-let DATA={};
+let DATA={},CUR='';
 function photos(r){const d=DATA[r.from||r.id]||{};let ph=d.photos||[];if(r.only)ph=ph.filter(p=>r.only.includes(p.file));if(r.skip)ph=ph.filter(p=>!r.skip.includes(p.file));return ph}
 function dir(r){return r.from||r.id}
 const $=s=>document.querySelector(s);
 function doors(){
-  $('#doors').innerHTML=[...ROOMS].reverse().map(r=>{const p=photos(r)[0];
+  const F=window.FILTER||'all';$('#tabs').innerHTML=[['all','All'],['shoot','Shoots'],['event','Events']].map(([k,l])=>`<button class="${F===k?'on':''}" onclick="FILTER='${k}';doors()">${l}</button>`).join('');
+  $('#doors').innerHTML=[...ROOMS].filter(r=>F==='all'||(r.kind||'shoot')===F).sort((a,b)=>(b.s||'').localeCompare(a.s||'')).map(r=>{const p=photos(r)[0];
     return `<a class="shoot" href="#r-${r.id}" style="--a:${r.d2==='#151515'||r.d2==='#cfcfcc'||r.d2==='#eaf4fb'?r.d1:r.d2}"><div class="im">${p?`<img loading="lazy" src="images/rooms/${dir(r)}/${p.file}" alt="">`:''}</div><div class="k">${r.kicker}</div><div class="t">${r.title}</div><div class="s">${r.date.split('·')[0]}</div></a>`}).join('')+
     `<a class="shoot" href="${PLAIN.href}"><div class="im" style="background:#f2f2f2"></div><div class="k">Early work</div><div class="t">${PLAIN.title}</div><div class="s">${PLAIN.sub}</div></a>`;
 }
 function room(id){
-  const i=ROOMS.findIndex(r=>r.id===id),r=ROOMS[i]; if(!r) return hall();
+  const i=ROOMS.findIndex(r=>r.id===id),r=ROOMS[i]; if(!r) return hall(); CUR=r.from||r.id;
   const d=r.from?{}:(DATA[id]||{}), ph=photos(r), D=dir(r);
   document.body.className='inroom'; document.body.style.setProperty('--a',(['#151515','#cfcfcc','#eaf4fb'].includes(r.d2)?r.d1:r.d2)); scrollTo(0,0);
-  const prev=ROOMS[(i-1+ROOMS.length)%ROOMS.length],next=ROOMS[(i+1)%ROOMS.length];
+  const O=[...ROOMS].sort((a,b)=>(a.s||'').localeCompare(b.s||'')),k=O.indexOf(r),prev=O[(k-1+O.length)%O.length],next=O[(k+1)%O.length];
   const facts=[...r.facts]; if(d.files_in_folder) facts.push(['In the folder',d.files_in_folder+' edited files']);
   $('#room').innerHTML=`<div class="crumb"><a href="index.html">Kojo Takes Photos</a> / <a href="#hall">Shoots</a> / ${r.title}</div>
    <div class="rhead"><div><div class="kicker">${r.kicker} · ${r.date}</div><h1>${r.title}</h1><p>${r.blurb}</p>${r.census?`<p class="note"><a href="census.html">See it in the Census ↗</a></p>`:''}${r.artist?`<div class="artist"><div class="ah">Notes from the artist</div>${r.artist.map(a=>`<p>${a}</p>`).join('')}</div>`:''}</div>
@@ -109,10 +127,10 @@ function room(id){
   if(window.instgrm) instgrm.Embeds.process();
 }
 function hall(){document.body.className='';document.body.style.removeProperty('--a');doors();}
-function route(){const m=location.hash.match(/^#r-([a-z0-9]+)$/); m?room(m[1]):hall();}
+function route(){const m=location.hash.match(/^#r-([a-z0-9_]+)$/); m?room(m[1]):hall();}
 document.addEventListener('click',e=>{const f=e.target.closest('figure[data-src],img[data-big]');if(f){$('#lb img').src=f.dataset.src||f.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
-fetch('images/rooms/rooms.json').then(r=>r.ok?r.json():{}).catch(()=>({})).then(j=>{DATA=j||{};route()});
+Promise.all(['images/rooms/rooms.json','images/rooms/rooms_events.json'].map(u=>fetch(u).then(r=>r.ok?r.json():{}).catch(()=>({})))).then(([a,b])=>{DATA=Object.assign({},b,a);route()});
 addEventListener('hashchange',route);
 </script>
 <script async src="https://www.instagram.com/embed.js"></script>
