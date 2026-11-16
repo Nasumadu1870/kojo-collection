@@ -11,7 +11,7 @@
 body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;transition:background .6s,color .6s}
 a{color:inherit}
 header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;height:66px;padding:0 32px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
-.mark{display:flex;flex-direction:column;line-height:.84;color:var(--acc);text-decoration:none;font:27px 'Libre Caslon Display',serif}.mark small{font:700 9.5px Inter;letter-spacing:.2em;margin-top:5px}
+.mark{display:flex;flex-direction:column;line-height:.84;color:var(--acc);text-decoration:none;font:27px 'Libre Caslon Display',serif}.mark small{font:700 9.5px Inter;letter-spacing:.2em;margin-top:5px;white-space:nowrap}
 header nav{display:flex;gap:20px;font:600 14px Inter}header nav a{text-decoration:none}header nav a:hover{text-decoration:underline}
 .sp{flex:1}
 main{max-width:1240px;margin:0 auto;padding:0 32px 80px}
@@ -50,7 +50,7 @@ body.inroom #hall{display:none}body.inroom #room{display:block}
 .note{font-size:13px;color:var(--sub);margin-top:6px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}#lb img{max-width:94vw;max-height:92vh}
 #lb.on{display:flex}
-@media(max-width:860px){.rhead{grid-template-columns:1fr}header nav{display:none}main{padding:0 18px 60px}}
+@media(max-width:860px){.rhead{grid-template-columns:1fr;gap:20px}header{padding:0 18px;gap:14px}header nav{overflow-x:auto;white-space:nowrap;gap:14px;font-size:13.5px;scrollbar-width:none}main{padding:0 18px 60px}.wall{columns:2 150px;column-gap:10px}.wall figure{margin-bottom:10px}.shoots{grid-template-columns:1fr 1fr;gap:24px 12px}.shoot .t{font-size:19px}.facts{font-size:13px}.next{flex-wrap:wrap;font-size:14px}.hero img{max-height:70vh}}
 </style>
 </head>
 <body>
