@@ -128,7 +128,7 @@
 <header>
   <div class="wrap bar">
     <a class="mark" href="#top">KOJO<small>TAKES PHOTOS</small></a>
-    <nav><a href="#room-fashion">Fashion</a><a href="#room-city">City</a><a href="#room-waterfront">Waterfront</a><a href="#room-early">Early Work</a><a href="#room-lens">In Front of the Lens</a><a href="rooms.html">Shoots</a><a href="design.html">Design</a><a href="census.html">The Census</a></nav>
+    <nav><a href="#room-fashion">Fashion</a><a href="#room-city">City</a><a href="#room-early">Early Work</a><a href="#room-lens">In Front of the Lens</a><a href="rooms.html">Shoots</a><a href="design.html">Design</a><a href="census.html">The Census</a></nav>
     <div class="spacer"></div>
     <a class="pill" href="https://kojotakesphotos.myportfolio.com">Portfolio</a>
     <a class="pill red" href="https://www.instagram.com/kojotakesphotos/">Follow</a>
@@ -205,8 +205,7 @@
 <script>
 const ROOMS = [
   {id:'fashion', name:'Fashion', gallery:'Gallery 101', cover:'fashion_026', dates:'Ongoing', blurb:'Runway and editorial work with the Stevens FAME club, from FW24 “Arctic” to FW26, plus The Gallery Fashion Show.'},
-  {id:'city', name:'City', gallery:'Gallery 204', cover:'city_087', dates:'Ongoing', blurb:'Portraits against the skyline: Little Island at night, a walk along the Hoboken waterfront facing the city, and one very sunny day.'},
-  {id:'waterfront', name:'Waterfront', gallery:'Gallery 305', cover:'skate_115', dates:'Ongoing', blurb:'And they skated: friends on the boardwalk, Manhattan across the water.'},
+  {id:'city', name:'City', gallery:'Gallery 204', cover:'city_087', dates:'Ongoing', blurb:'Portraits against the skyline: Little Island at night, a walk along the Hoboken waterfront facing the city, one very sunny day, and friends skating the boardwalk.'},
   {id:'lens', name:'In Front of the Lens', gallery:'Gallery 000', cover:'early_0138', dates:'2022 – now', dark:true, blurb:'The artist as the subject. Every frame here was shot by a friend; the styling, the stance and the vision are his.'},
   {id:'early', name:'Early Work: First Night in the City', gallery:'Gallery 001', cover:'early_0142', dates:'Freshman year', blurb:'The first time the artist went to the city with a group at night.', wall:'“The first time I went to the city with a group at night. Swagless days, but young.”'},
 ];
@@ -225,9 +224,9 @@ const W = [
   {k:'city_090', room:'city', t:'A Sunny Day II', d:'March 2024', cam:'Nikon D5300'},
   {k:'city_089', room:'city', t:'A Sunny Day III', d:'March 2024', cam:'Nikon D5300'},
   {k:'city_091', room:'city', t:'A Sunny Day IV', d:'March 2024', cam:'Nikon D5300'},
-  {k:'skate_115', room:'waterfront', t:'And They Skated I', d:'May 2023', cam:'Nikon D5300'},
-  {k:'skate_119', room:'waterfront', t:'And They Skated II', d:'May 2023', cam:'Nikon D5300'},
-  {k:'skate_113', room:'waterfront', t:'And They Skated III', d:'May 2023', cam:'Nikon D5300'},
+  {k:'skate_115', room:'city', t:'And They Skated I', d:'May 2023', cam:'Nikon D5300'},
+  {k:'skate_119', room:'city', t:'And They Skated II', d:'May 2023', cam:'Nikon D5300'},
+  {k:'skate_113', room:'city', t:'And They Skated III', d:'May 2023', cam:'Nikon D5300'},
   {k:'early_0140', room:'early', t:'First Night in the City I', d:'Freshman year', cam:'Nikon D5300'},
   {k:'early_0142', room:'early', t:'First Night in the City II', d:'Freshman year', cam:'Nikon D5300'},
   {k:'early_0135', room:'early', t:'First Night in the City III', d:'Freshman year', cam:'Nikon D5300'},
@@ -261,7 +260,7 @@ function showRoom(id){
     <div class="grid">${W.filter(w => w.room === id).map(w => workCard(w, '')).join('')}</div>`;
   if (id === 'lens') lensArchive();
 }
-const LENS_SKIP=['l16.jpg','l13.jpg','l14.jpg','l15.jpg','l34.jpg','l35.jpg','l44.jpg','l46.jpg','l72.jpg','l74.jpg','l75.jpg','l78.jpg'];
+const LENS_SKIP=['l16.jpg','l13.jpg','l14.jpg','l15.jpg','l34.jpg','l35.jpg','l44.jpg','l46.jpg','l72.jpg','l74.jpg','l75.jpg','l78.jpg','l24.jpg','l21.jpg','l45.jpg','l41.jpg','l03.jpg','l33.jpg','l47.jpg'];
 function lensArchive(){
   fetch('images/lens/lens.json').then(r=>r.json()).then(L=>{
     L=L.filter(x=>!LENS_SKIP.includes(x.file));
