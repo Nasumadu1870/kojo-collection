@@ -1,0 +1,522 @@
+[
+ {
+  "file": "l01.jpg",
+  "src": "DSCI0171.JPG",
+  "date": "2010:04:29 14:05:23",
+  "device": "Polaroid i1236",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l02.jpg",
+  "src": "DSCI0215.JPG",
+  "date": "2010:07:22 22:56:23",
+  "device": "Polaroid i1236",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l03.jpg",
+  "src": "DSC_9225.JPG",
+  "date": "2011:12:31 20:31:01",
+  "device": "NIKON CORPORATION NIKON D3200",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1064
+ },
+ {
+  "file": "l04.jpg",
+  "src": "DSC_0716.JPG",
+  "date": "2011:12:31 21:15:30",
+  "device": "NIKON CORPORATION NIKON D3200",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1064
+ },
+ {
+  "file": "l05.jpg",
+  "src": "DSC_8945.JPG",
+  "date": "2012:01:02 18:25:02",
+  "device": "NIKON CORPORATION NIKON D3200",
+  "lens": "35.0 mm f/1.8",
+  "selfie": false,
+  "w": 1600,
+  "h": 1064
+ },
+ {
+  "file": "l06.jpg",
+  "src": "SAM_2772_Original.JPEG",
+  "date": "2013:03:28 10:23:35",
+  "device": "SAMSUNG WB250F/WB251F/WB252F",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l07.jpg",
+  "src": "DSC08738.jpg",
+  "date": "2016:04:01 16:51:10",
+  "device": "SONY ILCE-6500",
+  "lens": "E 55-210mm F4.5-6.3 OSS",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l08.jpg",
+  "src": "DSC09159.jpg",
+  "date": "2016:04:29 18:01:56",
+  "device": "SONY ILCE-6500",
+  "lens": "E 55-210mm F4.5-6.3 OSS",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l09.jpg",
+  "src": "IMG_9817.JPG",
+  "date": "2017:01:03 04:00:09",
+  "device": "FUJIFILM X100F",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1599
+ },
+ {
+  "file": "l10.jpg",
+  "src": "DSCF7929 2024-05-07 16_59_13.JPEG",
+  "date": "2017:01:04 04:21:13",
+  "device": "FUJIFILM X100F",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1066
+ },
+ {
+  "file": "l11.jpg",
+  "src": "IMG_0111_Original.JPEG",
+  "date": "2018:11:01 12:04:54",
+  "device": "Apple iPhone 7",
+  "lens": "iPhone 7 back camera 3.99mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l12.jpg",
+  "src": "IMG_0498_Original.JPEG",
+  "date": "2018:11:03 10:49:56",
+  "device": "Apple iPhone 7",
+  "lens": "iPhone 7 back camera 3.99mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l13.jpg",
+  "src": "IMG_1223_Original.JPEG",
+  "date": "2019:02:16 22:18:27",
+  "device": "Apple iPhone 7",
+  "lens": "iPhone 7 back camera 3.99mm f/1.8",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l14.jpg",
+  "src": "IMG_1363_Original.JPEG",
+  "date": "2019:03:19 14:13:56",
+  "device": "Apple iPhone 7",
+  "lens": "iPhone 7 back camera 3.99mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l15.jpg",
+  "src": "IMG_20210216_132158_Original.JPEG",
+  "date": "2021:02:16 13:21:58",
+  "device": "BLU G6",
+  "lens": "",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l17.jpg",
+  "src": "IMG_1248.JPEG",
+  "date": "2022:09:02 23:35:12",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l18.jpg",
+  "src": "IMG_3938.JPEG",
+  "date": "2022:09:04 13:23:48",
+  "device": "Apple iPhone XS Max",
+  "lens": "iPhone XS Max back dual camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l19.jpg",
+  "src": "IMG_4022.JPEG",
+  "date": "2022:09:11 16:14:31",
+  "device": "Apple iPhone XS Max",
+  "lens": "iPhone XS Max back dual camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l20.jpg",
+  "src": "IMG_5967.JPG",
+  "date": "2022:10:30 02:48:45",
+  "device": "NIKON CORPORATION NIKON D5300",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l21.jpg",
+  "src": "IMG_6874.JPEG",
+  "date": "2022:12:02 00:25:21",
+  "device": "Apple iPhone 11",
+  "lens": "iPhone 11 back dual wide camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l22.jpg",
+  "src": "IMG_6920.JPG",
+  "date": "2022:12:05 22:39:31",
+  "device": "Apple iPhone 11",
+  "lens": "iPhone 11 back dual wide camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l23.jpg",
+  "src": "IMG_2090.JPEG",
+  "date": "2022:12:12 21:50:44",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l24.jpg",
+  "src": "IMG_6444.JPG",
+  "date": "2022:12:31 10:08:19",
+  "device": "Apple iPhone XS Max",
+  "lens": "iPhone XS Max back dual camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l25.jpg",
+  "src": "DSC_0906.JPEG",
+  "date": "2023:03:17 01:21:31",
+  "device": "NIKON CORPORATION NIKON D5300",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l26.jpg",
+  "src": "IMG_3652.JPEG",
+  "date": "2023:03:31 16:14:24",
+  "device": "Apple iPhone SE (2nd generation)",
+  "lens": "iPhone SE (2nd generation) back camera 3.99mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l27.jpg",
+  "src": "DSCI0226.JPG",
+  "date": "2023:04:02 12:24:40",
+  "device": "Polaroid i1236",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l28.jpg",
+  "src": "IMG_7848.JPG",
+  "date": "2023:04:02 13:17:11",
+  "device": "Apple iPhone 14",
+  "lens": "iPhone 14 back dual wide camera 5.7mm f/1.5",
+  "selfie": false,
+  "w": 1199,
+  "h": 1600
+ },
+ {
+  "file": "l29.jpg",
+  "src": "IMG_5741.JPEG",
+  "date": "2023:04:06 19:00:32",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l30.jpg",
+  "src": "IMG_6240.jpeg",
+  "date": "2023:04:16 14:29:34",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l31.jpg",
+  "src": "IMG_2301.JPEG",
+  "date": "2023:04:28 19:04:11",
+  "device": "Apple iPhone 11",
+  "lens": "iPhone 11 back dual wide camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l32.jpg",
+  "src": "IMG_0033-1.JPEG",
+  "date": "2023:05:02 13:20:27",
+  "device": "Apple iPhone XS Max",
+  "lens": "iPhone XS Max back dual camera 4.25mm f/1.8",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l33.jpg",
+  "src": "IMG_1082.JPEG",
+  "date": "2023:05:13 19:28:11",
+  "device": "Apple iPhone 13 Pro Max",
+  "lens": "iPhone 13 Pro Max back triple camera 1.57mm f/1.8",
+  "selfie": false,
+  "w": 1139,
+  "h": 1520
+ },
+ {
+  "file": "l34.jpg",
+  "src": "IMG_0019.JPEG",
+  "date": "2023:06:27 18:23:03",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l35.jpg",
+  "src": "IMG_0074.JPEG",
+  "date": "2023:06:30 21:52:59",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l36.jpg",
+  "src": "IMG_0595.JPEG",
+  "date": "2023:08:14 12:01:53",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l37.jpg",
+  "src": "IMG_0862.JPEG",
+  "date": "2023:08:31 12:53:54",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1600,
+  "h": 1200
+ },
+ {
+  "file": "l38.jpg",
+  "src": "20230901-IMG_4307.JPEG",
+  "date": "2023:09:01 11:12:30",
+  "device": "Canon Canon EOS R50",
+  "lens": "18-35mm F1.8 DC HSM | Art 013",
+  "selfie": false,
+  "w": 1021,
+  "h": 1600
+ },
+ {
+  "file": "l39.jpg",
+  "src": "_DSC3127.JPG",
+  "date": "2023:09:08 21:29:34",
+  "device": "NIKON CORPORATION NIKON D5300",
+  "lens": "18.0-55.0 mm f/3.5-5.6",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l40.jpg",
+  "src": "_DSC3164.JPG",
+  "date": "2023:09:08 21:32:55",
+  "device": "NIKON CORPORATION NIKON D5300",
+  "lens": "18.0-55.0 mm f/3.5-5.6",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l41.jpg",
+  "src": "IMG_1360.JPEG",
+  "date": "2023:09:29 17:21:14",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l42.jpg",
+  "src": "IMG_9466.JPEG",
+  "date": "2023:09:30 17:48:06",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l43.jpg",
+  "src": "_DSC4638.JPG",
+  "date": "2023:10:01 15:02:24",
+  "device": "NIKON CORPORATION NIKON D5300",
+  "lens": "",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ },
+ {
+  "file": "l44.jpg",
+  "src": "IMG_1613.JPEG",
+  "date": "2023:10:21 12:21:37",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l45.jpg",
+  "src": "IMG_1786.JPEG",
+  "date": "2023:10:28 16:16:24",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 5.1mm f/1.6",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l46.jpg",
+  "src": "IMG_1801.JPEG",
+  "date": "2023:10:28 16:42:52",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l47.jpg",
+  "src": "IMG_2268.JPEG",
+  "date": "2023:12:16 18:21:11",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l48.jpg",
+  "src": "IMG_2319.JPEG",
+  "date": "2024:01:27 16:13:34",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l49.jpg",
+  "src": "IMG_2320.JPEG",
+  "date": "2024:01:27 16:13:48",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l50.jpg",
+  "src": "IMG_2332-1.JPEG",
+  "date": "2024:01:27 16:17:53",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l51.jpg",
+  "src": "IMG_3492.JPEG",
+  "date": "2024:01:28 16:42:44",
+  "device": "Apple iPhone 15 Pro",
+  "lens": "iPhone 15 Pro back triple camera 6.86mm f/1.78",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l52.jpg",
+  "src": "IMG_2420.JPEG",
+  "date": "2024:01:28 17:57:10",
+  "device": "Apple iPhone 13",
+  "lens": "iPhone 13 back dual wide camera 1.54mm f/2.4",
+  "selfie": false,
+  "w": 1200,
+  "h": 1600
+ },
+ {
+  "file": "l53.jpg",
+  "src": "_DSC2406.jpg",
+  "date": "2024:02:16 22:30:27",
+  "device": "NIKON CORPORATION NIKON D5300",
+  "lens": "18.0-55.0 mm f/3.5-5.6",
+  "selfie": false,
+  "w": 1600,
+  "h": 1067
+ }
+]

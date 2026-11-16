@@ -104,6 +104,10 @@
   body.dark .c .t{font:700 15px Inter;letter-spacing:.14em;text-transform:uppercase}
   body.dark footer{background:#111}body.dark footer b{color:#f2f2f2}
   body.dark .stage{background:#000}body.dark dl,body.dark .tools{border-color:#222}
+  .lensarch h2{font:700 13px Inter;letter-spacing:.16em;text-transform:uppercase;margin:40px 0 8px;padding-top:26px;border-top:1px solid #222}
+  .lgrid{columns:4 220px;column-gap:16px;padding-bottom:30px}.lgrid figure{break-inside:avoid;margin:0 0 18px}.lgrid img{width:100%;display:block;filter:grayscale(1) contrast(1.1);transition:filter .4s}.lgrid figure:hover img{filter:none}
+  .lgrid figcaption{font-size:12px;color:#9a9a9a;padding-top:6px;line-height:1.45}.lgrid figcaption span{color:#666}
+  @media(max-width:900px){.lgrid{columns:2 140px;column-gap:10px}}
   footer{background:var(--soft);margin-top:40px;padding:44px 0 60px;font-size:14px;color:var(--grey)}
   footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
   footer b{color:var(--ink)}
@@ -253,6 +257,17 @@ function showRoom(id){
     <h1>${r.name}</h1><p class="lede">${r.blurb} <br><span style="font-weight:600;color:var(--ink)">${r.gallery}</span></p>
     ${r.wall ? `<p class="walltext">${r.wall}<br><span style="font:600 13px Inter">— the artist</span></p>` : ''}
     <div class="grid">${W.filter(w => w.room === id).map(w => workCard(w, '')).join('')}</div>`;
+  if (id === 'lens') lensArchive();
+}
+const LENS_SKIP=['l16.jpg'];
+function lensArchive(){
+  fetch('images/lens/lens.json').then(r=>r.json()).then(L=>{
+    L=L.filter(x=>!LENS_SKIP.includes(x.file));
+    const yr=x=>{const y=+x.date.slice(0,4);return (!/iPhone/.test(x.device)&&y<2020)?'':x.date.slice(0,7).replace(':','-')};
+    const el=document.createElement('div'); el.className='lensarch';
+    el.innerHTML=`<h2>From the archive</h2><p class="lede">Photos of the artist from his own phone library, ${L.length} of them. Selfies are credited to him. Everything else was taken by friends, on their phones, his phone or his camera.</p><div class="lgrid">${L.map(x=>`<figure><img loading="lazy" src="images/lens/${x.file}" alt=""><figcaption>${x.selfie?'Self-portrait':'Photographed by a friend'}${yr(x)?' · '+yr(x):''}<br><span>${x.device}</span></figcaption></figure>`).join('')}</div>`;
+    $('room').appendChild(el);
+  }).catch(()=>{});
 }
 function showObj(i){
   cur = (i + W.length) % W.length; const w = W[cur], r = roomOf(w.room);
