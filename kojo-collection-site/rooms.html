@@ -153,7 +153,7 @@ function hall(){document.body.className='';document.body.style.removeProperty('-
 function route(){const m=location.hash.match(/^#r-([a-z0-9_]+)$/); m?room(m[1]):hall();}
 document.addEventListener('click',e=>{const f=e.target.closest('figure[data-src],img[data-big]');if(f){$('#lb img').src=f.dataset.src||f.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
-Promise.all(['images/rooms/rooms.json','images/rooms/rooms_events.json','images/rooms/rooms_events3.json','images/rooms/rooms_events4.json','images/rooms/rooms_events5.json'].map(u=>fetch(u).then(r=>r.ok?r.json():{}).catch(()=>({})))).then(([a,b,c,d,e])=>{DATA=Object.assign({},e,d,c,b,a);route()});
+Promise.all(['images/rooms/rooms.json','images/rooms/rooms_events.json','images/rooms/rooms_events3.json','images/rooms/rooms_events4.json','images/rooms/rooms_events5.json'].map(u=>fetch(u,{cache:'no-cache'}).then(r=>r.ok?r.json():{}).catch(()=>({})))).then(([a,b,c,d,e])=>{DATA=Object.assign({},e,d,c,b,a);route()});
 document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t)return;e.preventDefault();e.stopPropagation();try{navigator.clipboard.writeText(t.textContent)}catch(_){};t.classList.add('ok');const o=t.textContent;t.textContent='copied';setTimeout(()=>{t.textContent=o;t.classList.remove('ok')},900)},true);
 addEventListener('hashchange',route);
 </script>
