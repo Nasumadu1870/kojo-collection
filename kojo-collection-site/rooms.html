@@ -57,7 +57,7 @@ body.inroom #hall{display:none}body.inroom #room{display:block}
 </head>
 <body>
 <header><a class="mark" href="index.html">KOJO<small>TAKES PHOTOS</small></a>
-<nav><a href="index.html">The Collection</a><a href="rooms.html">The Work</a><a href="design.html">Design</a><a href="census.html">The Census</a></nav><div class="sp"></div></header>
+<nav><a href="collection.html">The Collection</a><a href="rooms.html">The Work</a><a href="design.html">Design</a><a href="census.html">The Census</a></nav><div class="sp"></div></header>
 <main>
 <section id="hall">
   <h1>The Work</h1>
@@ -127,7 +127,7 @@ const ROOMS=[
 ];
 const FUJI_OFF=(2670*24+15)*3600e3+50*60e3;
 function pdate(p){let d=(p.date||'').slice(0,19).replace(/^(\d{4}):(\d\d):(\d\d)/,'$1-$2-$3');if(!d)return '';if(p.model==='Canon EOS REBEL T5'&&d.startsWith('2017'))return 'Date unknown (camera clock not set)';if(p.model==='X100F'&&d.startsWith('2017')){if(!['dumbo24'].includes(CUR))return 'Date unknown (Fuji clock not set)';const t=new Date(d.replace(' ','T')+'Z').getTime()+FUJI_OFF;return new Date(t).toISOString().slice(0,10)+' (Fuji clock corrected)'}return d.slice(0,10)}
-const PLAIN={title:'First Night in the City',sub:'Freshman year',href:'index.html#room-early'};
+const PLAIN={title:'First Night in the City',sub:'Freshman year',href:'collection.html#room-early'};
 let DATA={},CUR='';
 function photos(r){const d=DATA[r.from||r.id]||{};let ph=d.photos||[];if(r.only)ph=ph.filter(p=>r.only.includes(p.file));if(r.skip)ph=ph.filter(p=>!r.skip.includes(p.file));return ph}
 function dir(r){return r.from||r.id}
