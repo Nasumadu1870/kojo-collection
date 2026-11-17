@@ -29,40 +29,45 @@ figcaption{font-size:12.5px;color:#666;padding:8px 2px 0;line-height:1.45}figcap
 .fin .q{border-left:2px solid #1d1d1d;padding-left:14px;font:400 21px/1.45 'Libre Caslon Display',serif;margin:0 0 6px}.fin .q i{display:block;font:600 10.5px Inter;font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:6px}
 .sec2{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin:0 0 6px}.sec2 h3{font:400 34px 'Libre Caslon Display',serif;margin:0}
 .sec2 p{margin:0;color:#666;font-size:15px;max-width:640px;line-height:1.6}
-.art figure img{box-shadow:none;outline:1px solid #e6e6e6}.wall.art{columns:5 190px}
+.art figure img{box-shadow:none;outline:1px solid #e6e6e6}.wall.art{columns:5 190px}.wall.fw{columns:4 230px;margin-bottom:10px}
 @media(max-width:860px){.fin{grid-template-columns:1fr;gap:18px;margin-bottom:46px;padding-bottom:36px}.wall.art{columns:2 150px}}
 </style></head>
 <body>
 <header><a class="mark" href="index.html">KOJO<small>TAKES PHOTOS</small></a><nav><a href="collection.html">The Collection</a><a href="rooms.html">The Work</a><a href="design.html">Design</a><a href="census.html">The Census</a></nav></header>
 <main>
 <h1>Design</h1>
-<p class="lede">Photoshop work from 2023 to 2026. Most of it is process: backgrounds, textures and experiments he built bigger work from. One piece is finished.</p>
+<p class="lede">Photoshop work from 2022 to 2026, in two parts: the finished pieces, from BSU flyers to the experiments he made for himself, and the studies and artifacts he built them from.</p>
 <section class="fin">
  <figure data-src="images/design/d076.jpg"><span class="tag">D-076</span><img src="images/design/d076.jpg" alt="A blue duotone of friends on a park bench, traced over with outlines"></figure>
  <div>
-  <div class="k">Finished work</div>
+  <div class="k">Finished work · the standout</div>
   <h2>i tried to do something</h2>
   <p class="m">Photoshop, 2024. Begun April 15, 2024, the day of the FAME picnic, on one of the fisheye frames from that afternoon, and finished that September after five saves.<br>Folder: certified time waster</p>
   <p class="q"><i>Note from the artist</i>One of the coolest things I’ve ever done.</p>
  </div>
 </section>
-<div class="sec2"><h3>Studies &amp; artifacts</h3><p>The parts, not the finished pieces: backgrounds like <b>D-274</b>, textures and tests where he was playing around. The techniques turn up in other work.</p></div>
+<div class="tabs" id="ftabs"></div>
+<div class="wall fw" id="fwall"></div>
+<div class="sec2" style="margin-top:60px;padding-top:40px;border-top:1px solid #1d1d1d"><h3>Studies &amp; artifacts</h3><p>The parts, not the finished pieces: backgrounds like <b>D-274</b>, textures and tests where he was playing around. The techniques turn up in other work.</p></div>
 <div class="tabs" id="tabs"></div>
 <div class="wall art" id="wall"></div>
 </main>
 <div id="lb"><img alt=""></div>
 <script>
-const $=s=>document.querySelector(s); let D=[], F='all';
+const $=s=>document.querySelector(s); let D=[], F='all', G='all';
+const gr=x=>/certified time waster/.test(x.folder)?'ctw':/dumb shit/.test(x.folder)?'ds':'bsu';
+const card=x=>`<figure id="${x.file}" data-src="images/design/${x.file}"><span class="tag">D-${x.file.slice(1,4)}</span><img loading="lazy" src="images/design/${x.file}" alt="${nice(x.name)}"><figcaption><b>${nice(x.name)}</b>${x.modified||x.created||''}${x.saves?` · saved ${x.saves}×`:''}</figcaption></figure>`;
+function drawF(){$('#ftabs').innerHTML=[['all','All finished'],['bsu','BSU flyers'],['ctw','“certified time waster”'],['ds','Sophomore experiments']].map(([k,l])=>`<button class="${G===k?'on':''}" onclick="G='${k}';drawF()">${l}</button>`).join('');$('#fwall').innerHTML=D.filter(x=>x.fin&&x.file!=='d076.jpg'&&(G==='all'||gr(x)===G)).sort((a,b)=>(b.modified||'').localeCompare(a.modified||'')).map(card).join('')}
 const cat=x=>/bsu/i.test(x.folder)?'bsu':/RHA/.test(x.folder)?'rha':/Senio/.test(x.folder)?'senior':'experiments';
 const brk=x=>{const m=+(x.modified||'').slice(5,7);return [6,7,8,12,1].includes(m)};
 const nice=s=>s.replace(/[-_]+/g,' ').replace(/\b(copy|recovered|final|v\d+(\.\d+)?|mark \d+)\b/gi,'').replace(/\s+/g,' ').trim()||'Untitled';
 function draw(){
   $('#tabs').innerHTML=[['all','All'],['break','Break work'],['bsu','BSU'],['rha','RHA'],['experiments','Experiments'],['senior','Senior year']].map(([k,l])=>`<button class="${F===k?'on':''}" onclick="F='${k}';draw()">${l}</button>`).join('');
-  const L0=D.filter(x=>x.file!=='d076.jpg').filter(x=>F==='all'||(F==='break'?brk(x):cat(x)===F)).sort((a,b)=>(b.modified||'').localeCompare(a.modified||'')); const L=[...L0.filter(x=>x.note),...L0.filter(x=>!x.note)];
+  const L0=D.filter(x=>!x.fin).filter(x=>F==='all'||(F==='break'?brk(x):cat(x)===F)).sort((a,b)=>(b.modified||'').localeCompare(a.modified||'')); const L=[...L0.filter(x=>x.note),...L0.filter(x=>!x.note)];
   $('#wall').innerHTML=L.map(x=>`<figure id="${x.file}" class="${x.note?'pin':''}" data-src="images/design/${x.file}">${x.note?`<div class="pinlab">Where this museum started</div>`:''}<span class="tag" style="${x.note?'top:34px':''}">D-${x.file.slice(1,4)}</span><img loading="lazy" src="images/design/${x.file}" alt="${nice(x.name)}"><figcaption><b>${nice(x.name)}${brk(x)?'<span class="brk">Break</span>':''}</b>${x.modified}${x.saves?` · saved ${x.saves}×`:''}<br>${x.folder.split('/').slice(0,3).join(' / ')}${x.note?`<span class="pinnote">${x.note}</span>`:''}</figcaption></figure>`).join('');
 }
 document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t)return;e.preventDefault();e.stopPropagation();try{navigator.clipboard.writeText(t.textContent)}catch(_){};t.classList.add('ok');const o=t.textContent;t.textContent='copied';setTimeout(()=>{t.textContent=o;t.classList.remove('ok')},900)},true);
 document.addEventListener('click',e=>{const f=e.target.closest('figure');if(f){$('#lb img').src=f.dataset.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
-fetch('images/design/design_sel.json').then(r=>r.json()).then(j=>{D=j;draw();if(location.hash){const el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)el.scrollIntoView()}});
+fetch('images/design/design_sel.json',{cache:'no-cache'}).then(r=>r.json()).then(j=>{D=j;drawF();draw();if(location.hash){const el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)el.scrollIntoView()}});
 </script>
 </body></html>
