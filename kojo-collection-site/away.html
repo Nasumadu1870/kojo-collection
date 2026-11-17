@@ -56,6 +56,16 @@ h1{font:400 clamp(64px,12vw,160px)/.9 'Libre Caslon Display',serif;margin:12px 0
  .pair{grid-template-columns:1fr;gap:40px}
  .full{margin-left:-18px;margin-right:-18px}.full .lab{padding-left:18px;padding-right:18px}
 }
+
+.ov{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;margin:0 0 10px}
+.ov a{display:block;aspect-ratio:1;overflow:hidden;background:#ddd}.ov img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}.ov a:hover img{opacity:.75}
+.ov .c{grid-column:1/-1;font:600 11px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:2px}
+#lb{flex-direction:column;cursor:default;touch-action:pan-y}#lb img{max-height:84vh;user-select:none;-webkit-user-drag:none}
+#lb .cap{color:#ddd;font:400 13px/1.5 Inter;margin-top:12px;text-align:center;padding:0 60px}#lb .cap b{font:400 17px 'Libre Caslon Display',serif;color:#fff;margin-right:8px}
+#lb button{position:absolute;background:none;border:0;color:#fff;font:300 40px/1 Inter;cursor:pointer;padding:16px;opacity:.75}#lb button:hover{opacity:1}
+#lb .pv{left:6px;top:50%;transform:translateY(-50%)}#lb .nx{right:6px;top:50%;transform:translateY(-50%)}#lb .x{top:6px;right:8px;font-size:30px}
+@media(max-width:820px){#lb .pv,#lb .nx{display:none}#lb .cap{padding:0 16px}}
+body{background:#fff}.bar{background:rgba(255,255,255,.92)}.work img,.ov a{background:#eee}
 </style>
 </head>
 <body>
@@ -66,16 +76,17 @@ h1{font:400 clamp(64px,12vw,160px)/.9 'Libre Caslon Display',serif;margin:12px 0
   <div><div class="kick">Gallery 4 · Exhibition</div><h1>Home &amp; Away</h1></div>
   <div>
    <p>Between shoots, Kojo kept the camera on: summers at home in Egypt and Ghana, trips into New York and down to D.C., and walks around Hoboken. These are the pictures he made for himself. There are 14 photographs here, from 8 sets.</p>
-   <p class="meta">Tap any photograph to see it full screen. Tap an ID to copy it.</p>
+   <p class="meta">Tap any photograph to see it full screen, then swipe to walk through the show. Tap an ID to copy it.</p>
   </div>
  </section>
+ <div class="ov" id="ov"></div>
  <div id="show"></div>
  <div class="end">
   <p>Every frame here comes from a full set in the archive. The sets hold the rest of each shoot, with the camera data and Instagram posts.</p>
   <div style="display:flex;gap:26px;flex-wrap:wrap"><a href="rooms.html">See every set →</a><a href="index.html#exhibitions">All exhibitions →</a></div>
  </div>
 </main>
-<div id="lb"><img alt=""></div>
+<div id="lb"><button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button><img alt=""><div class="cap"></div><button class="nx" aria-label="Next">›</button></div>
 
 <script>
 const CH=[{"n": "I", "h": "Egypt, summer ’23", "p": "A day at home held still from night to bright afternoon, and the streets outside.", "w": [{"d": "t_egyptlapse23", "f": "02", "t": "Egypt, Timelapse", "m": "Jul 18, 2023 · Nikon D5300", "l": "full"}, {"d": "t_egypt23", "f": "03", "t": "Egypt, Summer ’23", "m": "July 2023 · Nikon D5300", "l": "full"}, {"d": "t_egypt23", "f": "06", "t": "Egypt, Summer ’23", "m": "July 2023 · Nikon D5300", "l": "full"}]}, {"n": "II", "h": "Ghana", "p": "August 2023: family rooms, TV light and long evenings.", "w": [{"d": "t_ghana23", "f": "05", "t": "Ghana", "m": "Aug 2023 · Nikon D5300", "l": "full"}, {"d": "t_ghana23", "f": "08", "t": "Ghana", "m": "Aug 2023 · Nikon D5300", "l": "full"}]}, {"n": "III", "h": "The city", "p": "The Whitney at night, the Met with friends (the trip behind this whole museum), and cherry blossoms in D.C.", "w": [{"d": "t_whitney23", "f": "02", "t": "The Whitney", "m": "Sep 30, 2022 · Nikon D5300", "l": "full"}, {"d": "t_whitney23", "f": "05", "t": "The Whitney", "m": "Sep 30, 2022 · Nikon D5300", "l": "full"}, {"d": "t_met23", "f": "06", "t": "The Met", "m": "Apr 2, 2023 · Nikon D5300", "l": "full"}, {"pair": [{"d": "t_dc24", "f": "02", "t": "Washington, D.C.", "m": "Mar 14–16, 2024 · Nikon D5300 and Fujifilm X-T100 (RGB club loan)"}, {"d": "t_dc24", "f": "12", "t": "Washington, D.C.", "m": "Mar 14–16, 2024 · Nikon D5300 and Fujifilm X-T100 (RGB club loan)"}]}]}, {"n": "IV", "h": "Home, in black and white", "p": "Egypt and Hoboken, the two homes, in black and white, and one more walk around Hoboken in colour.", "w": [{"d": "t_egypthob25", "f": "12", "t": "Egypt & Hoboken", "m": "Jan 12, 2025 · Nikon D5300", "l": "port"}, {"d": "t_egypthob25", "f": "01", "t": "Egypt & Hoboken", "m": "Jan 12, 2025 · Nikon D5300", "l": "full"}, {"d": "t_hoboken25", "f": "08", "t": "Hoboken, on a Canon", "m": "Early 2025 · Canon Rebel T5 (RGB club loan)", "l": "full"}, {"d": "t_hoboken25", "f": "12", "t": "Hoboken, on a Canon", "m": "Early 2025 · Canon Rebel T5 (RGB club loan)", "l": "full"}]}];
@@ -89,14 +100,25 @@ document.getElementById('show').innerHTML=CH.map(c=>`<section class="ch reveal">
 }).join('')).join('');
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const lb=document.getElementById('lb');
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img'),cap=lb.querySelector('.cap');
+const all=[...document.querySelectorAll('.work img')];let k=0;
+all.forEach((im,i)=>{im.dataset.i=i;const f=im.closest('figure');if(!f.id)f.id='w'+i});
+const W=[];CH.forEach(c=>c.w.forEach(w=>(w.pair||[w]).forEach(x=>W.push(x))));
+document.getElementById('ov').innerHTML='<div class="c">'+W.length+' photographs · tap one to jump to it</div>'+all.map((im,i)=>`<a href="#" data-i="${i}"><img loading="lazy" src="${im.getAttribute('src')}" alt=""></a>`).join('');
+const show=i=>{k=(i+all.length)%all.length;lbi.src=all[k].src;const w=W[k];cap.innerHTML=`<b>${w.t}</b>${w.m} · ${tag(w)} · ${k+1}/${all.length}`;lb.classList.add('on')};
+const close=()=>lb.classList.remove('on');
 document.addEventListener('click',e=>{
  const t=e.target;
  if(t.classList.contains('tag')){navigator.clipboard&&navigator.clipboard.writeText(t.dataset.t).catch(()=>{});t.classList.add('ok');const o=t.textContent;t.textContent='Copied';setTimeout(()=>{t.textContent=o;t.classList.remove('ok')},1200);return}
- if(t.tagName==='IMG'&&t.closest('.work')){lb.querySelector('img').src=t.src;lb.classList.add('on');return}
- if(t.closest('#lb'))lb.classList.remove('on');
+ const a=t.closest('.ov a');if(a){e.preventDefault();const im=all[+a.dataset.i];im.closest('figure').classList.add('in');im.scrollIntoView({behavior:'smooth',block:'center'});return}
+ if(t.tagName==='IMG'&&t.closest('.work')){show(+t.dataset.i);return}
+ if(t.closest('#lb .pv')){show(k-1);return} if(t.closest('#lb .nx')){show(k+1);return}
+ if(t.closest('#lb .x')||t===lb){close();return}
+ if(t===lbi){show(k+1);return}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')show(k+1);if(e.key==='ArrowLeft')show(k-1)});
+let sx=0,sy=0;lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))show(dx<0?k+1:k-1);else if(dy>80)close()});
 </script>
 </body>
 </html>
